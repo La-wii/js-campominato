@@ -12,15 +12,19 @@ while (numPc.length < 16) {
 
 console.log(numPc)
 
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100. L’utente non può inserire più volte lo stesso numero.
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100. L’utente non può inserire più volte lo stesso numero.
+// parte utente
+// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.  
+// L’utente non può inserire più volte lo stesso numero.
+// Se il numero è presente nella lista dei numeri generati, la partita termina
+// altrimenti si continua chiedendo all’utente un altro numero.
+
 
 var arrayUtente = [];
-var lose = false
+var lose = false;
 
 while (arrayUtente.length < 16 && !lose) {
-    var numero
-    var numInserito = parseInt(prompt('Inserisci numero'));
+    // num da 1 a 100
+    var numInserito = parseInt(prompt('Inserisci numero da 1 a 100'));
 
     if (!numPc.includes(numInserito)) {
         console.log('num ok');
@@ -28,22 +32,34 @@ while (arrayUtente.length < 16 && !lose) {
         if (!arrayUtente.includes(numInserito)) {
             arrayUtente.push(numInserito);
         } else {
+            // L’utente non può inserire più volte lo stesso numero.
             console.log('num già inserito');
             alert('Hai già inserito questo numero' + arrayUtente)
         }
-
+        
     } else {
         var lose = true;
         console.log('hai perso');
-        alert('Sei morto :(')
+        alert('Sei morto :(');
     }
     
     console.log(arrayUtente);
+    
 }
 
-console.log(arrayUtente.length);
+// console.log(arrayUtente.length);
 
 
+// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
+
+for (var i = 0; i < 3; i++) {
+    if (arrayUtente.length == 16){
+        alert('hai vinto');
+    } if (arrayUtente.length < 16) {
+        console.log(arrayUtente.length);
+        document.getElementById("ituoinumeri").innerHTML = 'hai inserito' + ' ' + arrayUtente.length + ' ' + 'numeri';
+    }
+}
 
 // -------------------- Funzioni -----------------------------
 

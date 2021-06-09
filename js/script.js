@@ -34,10 +34,13 @@ while (arrayUtente.length < 16 && !lose) {
         } else {
             // L’utente non può inserire più volte lo stesso numero.
             console.log('num già inserito');
-            alert('Hai già inserito questo numero' + arrayUtente)
+            alert('Hai già inserito questo numero' + arrayUtente);
         }
         
+    } if (numInserito == 0 || numInserito > 100){
+        alert('Il numero deve essere tra 1 a 100');
     } else {
+
         var lose = true;
         console.log('hai perso');
         alert('Sei morto :(');
@@ -68,5 +71,3 @@ for (var i = 0; i < 3; i++) {
 function randomNumbers(numMin, numMax) {
     return Math.floor(Math.random() * (numMax - numMin + 1) ) + numMin;
 }
-
-

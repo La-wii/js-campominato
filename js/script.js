@@ -29,18 +29,15 @@ while (arrayUtente.length < 16 && !lose) {
     if (!numPc.includes(numInserito)) {
         console.log('num ok');
 
-        if (!arrayUtente.includes(numInserito)) {
+        if (!arrayUtente.includes(numInserito) && numInserito > 0 && numInserito < 101) {
             arrayUtente.push(numInserito);
         } else {
             // L’utente non può inserire più volte lo stesso numero.
             console.log('num già inserito');
-            alert('Hai già inserito questo numero' + arrayUtente);
+            alert('Hai già scelto questi numeri:' + ' ' +  arrayUtente + ' !!Ricorda puoi solo inserire numeri da 1 a 100!!');
         }
-        
-    } if (numInserito == 0 || numInserito > 100){
-        alert('Il numero deve essere tra 1 a 100');
-    } else {
 
+    } else {
         var lose = true;
         console.log('hai perso');
         alert('Sei morto :(');

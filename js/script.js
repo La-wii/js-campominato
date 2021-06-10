@@ -1,70 +1,74 @@
-// Il computer deve generare 16 numeri casuali tra 1 e 100. 
-// I numeri non possono essere duplicati.
-var numPc = [];
+var bombe = [];
+var numeriUtente = [];
+var massimo = 100;
+var possibilita = massimo - 16;
 
-while (numPc.length < 16) {
-    var randomNum = randomNumbers(1, 100)
-
-    if (!numPc.includes(randomNum)) { 
-        numPc.push(randomNum);
+while (bombe.length < 16 ){
+    var numero = randomNumbers(1, massimo);
+    if (!bombe.includes(numero)){
+        bombe.push(numero);
     }
 }
 
-console.log(numPc)
-
-// parte utente
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.  
-// L’utente non può inserire più volte lo stesso numero.
-// Se il numero è presente nella lista dei numeri generati, la partita termina
-// altrimenti si continua chiedendo all’utente un altro numero.
 
 
-var arrayUtente = [];
-var lose = false;
 
-while (arrayUtente.length < 16 && !lose) {
-    // num da 1 a 100
-    var numInserito = parseInt(prompt('Inserisci numero da 1 a 100'));
+var semaforo = false;
 
-    if (!numPc.includes(numInserito)) {
-        console.log('num ok');
+while (numeriUtente.length < 5 && !semaforo){ 
+    // oppure semaforo == false
+    var numeroUtente = parseInt(prompt('inseisci un numero da 1 a 100'));
+    
+    // ------------------------ soluzione if - else
+    // if (numeroUtente >= 1 && numeroUtente <= massimo){
+    //     numeriUtente.push(numeroUtente);
+    // } else {
+    //     alert('numero non consentito');
+    // }
 
-        if (!arrayUtente.includes(numInserito) && numInserito > 0 && numInserito < 101) {
-            arrayUtente.push(numInserito);
-        } else {
-            // L’utente non può inserire più volte lo stesso numero.
-            console.log('num già inserito');
-            alert('Hai già scelto questi numeri:' + ' ' +  arrayUtente + ' !!Ricorda puoi solo inserire numeri da 1 a 100!!');
-        }
+    // ------------------------------------- soluzione do while
+    // do {
+    //     var numeroUtente = parseInt(prompt('inseisci un numero da 1 a 100'));
+    // } while (numeroUtente < 1 ||  numeroUtente > massimo);
 
+    // ------ soluzione while
+    while (numeroUtente < 1 ||  numeroUtente > massimo){
+        alert('Attenzione! Hai inserito un numero non consentito');
+        var numeroUtente = parseInt(prompt('inseisci un numero da 1 a 100'));
+    }
+
+    if (searchNum(bombe, numeroUtente)){
+        alert('bomba trovata');
+        semaforo = true;
     } else {
-        var lose = true;
-        console.log('hai perso');
-        alert('Sei morto :(');
+        numeriUtente.push(numeroUtente);
     }
     
-    console.log(arrayUtente);
+
     
+    console.log('ciao');
 }
 
-// console.log(arrayUtente.length);
+console.log(numeriUtente);
+console.log(bombe);
 
 
-// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
-
-for (var i = 0; i < 3; i++) {
-    if (arrayUtente.length == 16){
-        alert('hai vinto');
-    } if (arrayUtente.length < 16) {
-        console.log(arrayUtente.length);
-        document.getElementById("ituoinumeri").innerHTML = 'hai inserito' + ' ' + arrayUtente.length + ' ' + 'numeri';
-    }
-}
-
-// -------------------- Funzioni -----------------------------
-
-// funzione numero random
-
+// -------------------- funzioni
+// funzione random
 function randomNumbers(numMin, numMax) {
     return Math.floor(Math.random() * (numMax - numMin + 1) ) + numMin;
 }
+
+// funzione verifica se numero è presente in array
+function searchNum (array, numero){
+    for (var i = 0 ; i < array.length; i++){
+        if (array[i] == numero){
+            return true;
+        }
+    }
+    return false; 
+}
+
+
+
+

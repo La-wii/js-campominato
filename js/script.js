@@ -1,7 +1,30 @@
 var bombe = [];
 var numeriUtente = [];
-var massimo = 100;
+
+
+var scelta = parseInt(prompt('inserisci 0, 1 oppure 2'));
+
+while (scelta < 0 || scelta > 2 || isNaN(scelta)){
+    alert('Attenzione! Deve essere un numero tra 0 e 2');
+    var scelta = parseInt(prompt('inserisci 0, 1 oppure 2'));
+} 
+
 var possibilita = massimo - 16;
+
+switch(scelta){
+    case 0: 
+        var massimo = 100;
+        // var possibilita = massimo - 16 se la dichiaro fuori posso evitare di ripetere;
+        break;
+    case 1:   
+        var massimo = 80;
+        // var possibilita = massimo - 16 se la dichiaro fuori posso evitare di ripetere;  
+        break;
+    default:
+        var massimo = 50;
+        // var possibilita = massimo - 16 se la dichiaro fuori posso evitare di ripetere;  
+        break;    
+}
 
 while (bombe.length < 16 ){
     var numero = randomNumbers(1, massimo);
@@ -9,13 +32,13 @@ while (bombe.length < 16 ){
         bombe.push(numero);
     }
 }
-
+console.log(bombe);
 
 
 
 var semaforo = false;
 
-while (numeriUtente.length < 5 && !semaforo){ 
+while (numeriUtente.length < possibilita && !semaforo){ 
     // oppure semaforo == false
     var numeroUtente = parseInt(prompt('inseisci un numero da 1 a 100'));
     
@@ -45,6 +68,7 @@ while (numeriUtente.length < 5 && !semaforo){
     }   else {
         alert('hai già inserito questo numero');
     }
+    console.log(numeriUtente);
 
 }
 
@@ -55,10 +79,6 @@ if (semaforo){
 } else {
     alert('hai vinto');
 }
-
-console.log(numeriUtente);
-console.log(bombe);
-
 
 // -------------------- funzioni
 // funzione random

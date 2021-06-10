@@ -43,10 +43,15 @@ while (numeriUtente.length < 5 && !semaforo){
     } else {
         numeriUtente.push(numeroUtente);
     }
-    
 
-    
-    console.log('ciao');
+}
+
+var lunghezzaArray = numeroUtente.length;
+
+if (semaforo){
+    alert('hai perso dopo ' + lunghezzaArray + 'tentativi');
+} else {
+    alert('hai vinto');
 }
 
 console.log(numeriUtente);

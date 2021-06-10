@@ -40,16 +40,18 @@ while (numeriUtente.length < 5 && !semaforo){
     if (searchNum(bombe, numeroUtente)){
         alert('bomba trovata');
         semaforo = true;
-    } else {
+    } else if(!searchNum(numeriUtente,numeroUtente)){
         numeriUtente.push(numeroUtente);
+    }   else {
+        alert('hai già inserito questo numero');
     }
 
 }
 
-var lunghezzaArray = numeroUtente.length;
+var lunghezzaArray = numeriUtente.length;
 
 if (semaforo){
-    alert('hai perso dopo ' + lunghezzaArray + 'tentativi');
+    alert('hai perso dopo ' + lunghezzaArray + ' tentativi');
 } else {
     alert('hai vinto');
 }
